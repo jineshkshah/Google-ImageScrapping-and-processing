@@ -162,7 +162,7 @@ app.post('/search', (req, res) => {
     }
 
 
-    // res.end("Search Link Sent")
+
 });
 
 
@@ -198,10 +198,6 @@ app.post('/saveImage', (req, res) => {
     for (var i = 0; i < download_arr_source.length; i++) {
         var image = download_arr_source[i];
         counter++;
-
-        // in production code, item.htmlTitle should have the HTML entities escaped.
-        // document.getElementById("content").innerHTML += "<br>" + item.link;
-
 
         download(download_arr_source[i], searchKeyword + counter + '.jpeg', function () {
 
