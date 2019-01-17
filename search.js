@@ -25,7 +25,7 @@ app.use(bodyParser());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 var arr_source = [];
-var download_arr_source = [];
+
 var searchKeyword;
 var flag;
 var searchkeywordFlag = "";
@@ -48,7 +48,7 @@ app.post('/showHistory', (req, res) => {
     var counter = 0;
 
     for (var i = 0; i < 10; i++) {
-        var image = download_arr_source[i];
+       
         counter++;
 
         historyGreyScaleImg.push("/grey_" + hisKeyword + counter + ".jpeg")
@@ -155,7 +155,7 @@ app.post('/search', (req, res) => {
         new Promise(resolve => {
 
             res.render('search', {source: arr_source});
-            download_arr_source = arr_source;
+            //download_arr_source = arr_source;
             arr_source = [];
             resolve();
         });
@@ -170,7 +170,7 @@ app.post('/saveImage', (req, res) => {
 
 
     var counter = 0;
-
+    var download_arr_source = [];
 
     var download = function (uri, filename, callback) {
         request.head(uri, function (err, res, body) {
@@ -195,6 +195,8 @@ app.post('/saveImage', (req, res) => {
         });
     };
 
+    download_arr_source = req.body.imgSrc;
+    
     for (var i = 0; i < download_arr_source.length; i++) {
         var image = download_arr_source[i];
         counter++;
